@@ -1,0 +1,40 @@
+.input-group {
+    $this: &;
+    &--one-unit {
+        position: relative;
+        width: 100%;
+        display: flex;
+
+        .form-control {
+            position: relative;
+            z-index: 1;
+            padding-right: 2.625rem;
+            padding-left: 2.625rem;
+            @include btn-round(true);
+        }
+
+        #{$this}-text {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            width: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            padding-right: 0;
+            padding-left: 0;
+            background: transparent;
+            border: none;
+            color: inherit;
+        }
+
+
+        #{$this}-text:first-child {
+            left: 0;
+        }
+        #{$this}-text:last-child {
+            right: 0;
+        }
+    }
+}

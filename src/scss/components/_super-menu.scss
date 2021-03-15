@@ -1,0 +1,75 @@
+@mixin super-menu-mobile() {
+
+}
+
+.super-menu {
+    position: relative;
+    z-index: 100;
+    height: 2.75rem;
+    padding: .625rem 0;
+    line-height: 2;
+    background-color: $black-2;
+    color: $gray-400;
+    font-size: $font-size-sm;
+
+    a {
+        color: $white;
+        font-weight: 500;
+    }
+
+    &-container {
+        @include responsive-container();
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .contact-us-link {
+        position: relative;
+        display: inline-block;
+        margin-left: .25rem;
+
+        &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            display: block;
+            height: 2px;
+            background: $white;
+            border-radius: 1px;
+        }
+    }
+
+    &-links {
+        display: flex;
+
+        a {
+            display: inline-flex;
+            margin-top: -.1875rem;
+
+            &.call-us-link {
+                @include media-breakpoint-down(md) {
+                    display: inline-flex;
+
+                    &__icon {
+                        display: inline-flex;
+                        margin-top: -.1875rem;
+                    }
+                }
+            }
+        }
+        a + a {
+            margin-left: 1rem;
+        }
+    }
+
+    @include media-breakpoint-down(xl) {
+        font-size: .6875rem;
+
+        &-container {
+            padding-left: 5rem + $container-padding-x;
+        }
+    }
+}

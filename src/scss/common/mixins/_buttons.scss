@@ -1,0 +1,99 @@
+$btn-bw: .125rem; // 2px
+
+@mixin btn-round ($important: false ) {
+    border-radius: $btn-padding-y + $btn-bw + ($btn-line-height / 2);
+    @if $important {
+        border-radius: $btn-padding-y + $btn-bw + ($btn-line-height / 2) !important;
+    }
+}
+@mixin btn-sm-round { border-radius: $btn-padding-y-sm + $btn-bw + ($btn-line-height-sm / 2); }
+@mixin btn-lg-round { border-radius: $btn-padding-y-lg + $btn-bw + ($btn-line-height-lg / 2); }
+
+@mixin btn() {
+    display: inline-block;
+    font-family: $btn-font-family;
+    font-weight: $btn-font-weight;
+    line-height: $btn-line-height;
+    color: $body-color;
+    text-align: center;
+    text-decoration: if($link-decoration == none, null, none);
+    white-space: $btn-white-space;
+    vertical-align: middle;
+    cursor: if($enable-button-pointers, pointer, null);
+    user-select: none;
+    background-color: transparent;
+    border: $btn-border-width solid transparent;
+    @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
+    @include transition($btn-transition);
+
+    &:hover {
+        color: $body-color;
+        text-decoration: if($link-hover-decoration == underline, none, null);
+    }
+
+    .btn-check:focus + &,
+    &:focus {
+        outline: 0;
+        box-shadow: $btn-focus-box-shadow;
+    }
+
+    .btn-check:checked + &,
+    .btn-check:active + &,
+    &:active,
+    &.active {
+        @include box-shadow($btn-active-box-shadow);
+
+        &:focus {
+            @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+        }
+    }
+
+    &:disabled,
+    &.disabled,
+    fieldset:disabled & {
+        pointer-events: none;
+        opacity: $btn-disabled-opacity;
+        @include box-shadow(none);
+    }
+}
+@mixin btn-outline($primary: $primary, $secondary: $white, $hover-color: $white) {
+    $background: $secondary;
+    $border: $primary;
+    $color: $primary;
+    $hover-background: $primary;
+    $hover-border: $hover-background;
+    //$hover-color: $hover-color;
+    $active-background: shade-color($background, 20%);
+    $active-border: $active-background;
+    $active-color: $hover-color;
+    $disabled-background: $secondary;
+    $disabled-border: tint-color($border, 10%);
+    $disabled-color: tint-color($color, 10%);
+
+    @include button-variant(
+        $background,
+        $border,
+        $color,
+        $hover-background,
+        $hover-border,
+        $hover-color,
+        $active-background,
+        $active-border,
+        $active-color,
+        $disabled-background,
+        $disabled-border,
+        $disabled-color
+    );
+    /*@include button-outline-variant(
+        //$color,
+        //$hover-color,
+        //$active-background,
+        //$active-border,
+        //$active-color
+        $color,
+        $color-hover: color-contrast($color),
+        $active-background: $color,
+        $active-border: $color,
+        $active-color: color-contrast($active-background)
+    )*/
+}

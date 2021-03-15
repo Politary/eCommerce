@@ -1,0 +1,16 @@
+.btn {
+    &-round {
+        @include btn-round;
+        &.btn-sm { @include btn-sm-round; }
+        &.btn-lg { @include btn-lg-round; }
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}
+
+.btn-outline-primary {
+    @include btn-outline;
+}

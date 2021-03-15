@@ -1,0 +1,8 @@
+.dropdown {
+    &-menu &-item {
+        margin-right: -$dropdown-padding-x;
+        margin-left: -$dropdown-padding-x;
+        padding-right: $dropdown-padding-x;
+        padding-left: $dropdown-padding-x;
+    }
+}

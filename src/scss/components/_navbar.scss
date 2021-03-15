@@ -1,0 +1,348 @@
+@mixin navbar-mobile() {
+    height: 4rem;
+    background-color: $primary;
+    color: $white;
+
+    &-brand {
+        $size: 4rem;
+
+        position: absolute;
+        z-index: 10;
+        top: -2.25rem;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        width: $size;
+        height: $size;
+        padding: .75rem;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: $primary;
+        color: inherit;
+
+        .svg-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 1.5rem;
+            line-height: 1.5rem;
+
+            svg {
+                width: 1.125rem;
+                height: 1.5rem;
+            }
+        }
+
+        @include haf {
+            color: inherit;
+        }
+    }
+    &-toggler {
+        position: relative;
+        z-index: 100;
+        display: inline-block;
+        padding: $container-padding-x;
+        margin-left: -$container-padding-x;
+        border-width: 0;
+        outline-width: 0;
+        color: inherit;
+    }
+    &-search {
+        position: relative;
+        z-index: 100;
+        flex: 1 1 auto;
+        color: $gray-500;
+
+        input {
+            @include btn-round();
+            background-color: $white;
+        }
+    }
+    .search-toggle-item {
+        display: none;
+    }
+}
+@mixin navbar-desktop() {
+    $this: &;
+
+    $item-py: 1.6875rem;
+
+    height: ($btn-line-height + (($btn-padding-y + $btn-bw) * 2)) + $item-py * 2 - .1875rem; // - 3px (idk where it is)
+    background-color: $white;
+    color: $black;
+    box-shadow: 0 0 0 1px $gray-500;
+
+    &-brand {
+        color: $primary;
+    }
+    &-nav {
+        .nav {
+            $nav: '.nav';
+            &-item {
+                padding: $item-py 0;
+            }
+            &-link {
+                @include btn;
+                @include btn-round;
+
+                &--primary {
+                    color: $primary;
+                    @include btn-outline($primary);
+                }
+
+                &:hover {
+                    @include btn-outline($primary);
+                    background-color: $primary;
+                }
+            }
+            &-item:not(#{$nav}-item--special):hover #{$nav}-link {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+        }
+    }
+    &-search {
+        .form-control {
+            @include haf(true) {
+                background-color: $gray-200 !important;
+            }
+        }
+    }
+    &-catalog {
+        $catalog: &;
+        $catalog-height: 400px;
+
+        $drop-one-width: 22rem;
+        $item-width: 16.875rem; // 270px
+
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 900;
+        display: flex;
+        height: $catalog-height;
+        background: $white;
+        box-shadow: $box-shadow-lg;
+
+        @at-root #{$this}:not(.catalog-open) #{$catalog} {
+            display: none;
+        }
+
+        &-item {
+            display: none;
+            flex: 1 1 auto;
+            //background-color: bisque;
+
+            &--active {
+                display: flex;
+            }
+
+            .product-card {
+                width: $item-width;
+            }
+        }
+
+        &-categories {
+            $catalog-categories: &;
+
+            display: flex;
+            flex-direction: column;
+            width: $drop-one-width;
+            height: $catalog-height;
+            padding: 0;
+            margin-bottom: 0;
+            border-right: 1px solid $gray-500;
+            //background-color: yellowgreen;
+
+            li:hover {
+                background-color: $gray-200;
+
+                > #{$catalog-categories} {
+                    display: flex;
+                }
+            }
+
+            &.dropdown-menu {
+                display: none;
+                width: $item-width;
+                margin-left: 1px;
+                //background-color: aquamarine;
+                border-left: none;
+                border-top: none;
+                border-bottom: none;
+            }
+        }
+        &-category {
+            display: flex;
+            align-items: center;
+            padding: .625rem 1.75rem;
+            font-size: $font-size-14;
+            line-height: 1.5rem;
+            font-weight: 600;
+            color: $black;
+
+            > span:first-child {
+                margin-right: auto;
+            }
+            .svg-icon {
+                margin-left: .5rem;
+            }
+
+            &:hover {
+                color: $black;
+            }
+        }
+    }
+
+    &:not(.search-open) {
+        #{$this}-search {
+            display: none;
+        }
+        .search-toggle {
+            .svg-icon--close {
+                display: none;
+            }
+        }
+    }
+    &.search-open {
+        .search-toggle {
+            .svg-icon--search {
+                display: none;
+            }
+        }
+        #{$this}-collapse {
+            display: none !important;
+        }
+        #{$this}-search {
+            flex: 1 1 auto;
+
+            .form-control {
+                font-size: 1rem;
+                line-height: 1.5;
+                padding-top: 1.125rem;
+                padding-bottom: 1.125rem;
+                border-radius: 1.875rem !important;
+
+                &::placeholder {
+                    font-size: 1rem;
+                    color: $gray-600;
+                }
+            }
+            .input-group-text:first-child {
+                color: $primary;
+            }
+        }
+    }
+}
+
+.navbar {
+    position: relative;
+    z-index: 900;
+
+    @include media-breakpoint-down(xl) {
+        @include navbar-mobile;
+    }
+    @include media-breakpoint-up(xl) {
+        @include navbar-desktop;
+    }
+
+    .container {
+        position: relative;
+        justify-content: flex-start;
+    }
+
+    &-tools {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 0;
+        color: inherit;
+
+        &-item {
+            display: block;
+            padding: .5rem;
+            color: inherit;
+        }
+        &-link {
+            display: block;
+            color: inherit;
+
+            &:hover {
+                color: $link-hover-color;
+            }
+
+            &.profile-link {
+                $profile-link: '.profile-link';
+                $size: 2rem;
+
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: $size;
+                height: $size;
+                padding: 0;
+                border-radius: 50%;
+                overflow: hidden;
+
+                &:after {
+                    display: none;
+                }
+                .svg-icon {
+                    position: relative;
+                    z-index: 1;
+                    margin-top: -2px;
+                }
+                img {
+                    position: absolute;
+                    z-index: 10;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                #{$profile-link}__circle {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    border: 2px solid currentColor;
+                }
+
+                @include media-breakpoint-down(xl) {
+                    img {
+                        display: none;
+                    }
+                }
+                @include media-breakpoint-up(xl) {
+                    $size: 2.25rem;
+                    width: $size;
+                    height: $size;
+                    margin-left: .5rem;
+
+                    img + .profile-link__circle {
+                        display: none;
+                    }
+                }
+            }
+
+            @include haf {
+                color: inherit !important;
+            }
+            @include media-breakpoint-up(xl) {
+                padding: .5rem;
+            }
+        }
+
+        @include media-breakpoint-down(xl) {
+            padding-left: .5rem;
+        }
+    }
+}

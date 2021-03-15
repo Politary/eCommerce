@@ -1,0 +1,27 @@
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+    &-content{
+      display: flex;
+      flex-direction: column;
+      width: 1932px;
+        &-divider{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          align-content: center;
+          justify-content: space-around;
+        }
+    }
+    &head{
+      font-size: 2.375rem;
+    }
+}

@@ -1,0 +1,11 @@
+.svg-icon {
+  color: inherit;
+
+  svg {
+    path, rect, circle {
+      &[fill]:not([fill="none"]) {
+        fill: currentColor;
+      }
+    }
+  }
+}

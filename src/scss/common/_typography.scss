@@ -1,0 +1,26 @@
+// Open Sans
+@font-face {
+    font-family: 'Poppins';
+    src: url($css-root-path + '../media/fonts/Poppins/Poppins-Regular.ttf');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url($css-root-path + '../media/fonts/Poppins/Poppins-SemiBold.ttf');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url($css-root-path + '../media/fonts/Poppins/Poppins-Bold.ttf');
+    font-weight: 600;
+    font-display: swap;
+}
+
+html, body {
+    font-size: 16px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}

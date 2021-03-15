@@ -1,0 +1,11 @@
+@import "mixins/containers";
+@import "mixins/buttons";
+
+@mixin haf($regular: false) {
+    @if $regular { @content }
+    &:hover,
+    &:active,
+    &:focus {
+        @content;
+    }
+}

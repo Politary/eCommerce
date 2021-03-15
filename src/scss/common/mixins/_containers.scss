@@ -1,0 +1,9 @@
+// Responsive containers that are 100% wide until a breakpoint
+@mixin responsive-container() {
+    @each $breakpoint, $container-max-width in $container-max-widths {
+        @extend .container-fluid;
+        @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+            max-width: $container-max-width;
+        }
+    }
+}

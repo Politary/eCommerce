@@ -1,0 +1,91 @@
+.product-card {
+    background-color: $gray-200;
+    box-shadow: inset 0 0 20px 0 rgba(0,0,0,0.25);
+    padding: 1.5625rem;
+    &-content{
+        display: flex;
+        height: 100%;
+        background-color: white;
+    }
+    &-stock{
+        font-size: 0.625rem;
+        color: #78A962;
+        padding: 0.625rem;
+    }
+    &-preview{
+        text-align: center;
+    }
+    &-list{
+        padding: 0;
+    }
+    &-text{
+        font-size: 0.8125rem;
+        padding: 0.625rem 0 1.25rem 0;
+    }
+    &-price{
+        &-old{
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1.225rem;
+        }
+        &-new{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 25.2px;
+        }
+    }
+}
+.availability-icon{
+    width: 10px;
+    height: 10px;
+}
+.rating-review-area{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+.rating-area {
+    margin:0;
+    overflow: hidden;
+}
+.review-area{
+    margin: 0 0.625rem  ;
+    font-size: 0.75rem;
+    color: #8C8C8C;
+}
+.rating-area:not(:checked) > input {
+    display: none;
+}
+.rating-area:not(:checked) > label {
+    float: right;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 32px;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) > label:before {
+    content: '★';
+}
+.rating-area > input:checked ~ label {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod;
+}
+.rate-area > label:active {
+    position: relative;
+}

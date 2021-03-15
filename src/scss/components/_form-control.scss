@@ -1,0 +1,5 @@
+.form-control {
+    &::placeholder {
+        font-size: $input-btn-font-size;
+    }
+}
